@@ -1,13 +1,13 @@
-import express, { json } from 'express';
-import { config } from 'dotenv';
-import mongoose from 'mongoose';
-import cors from 'cors';
+const express = require('express');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
-config();
+dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(json());
+app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 

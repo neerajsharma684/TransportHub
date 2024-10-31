@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #111827;
+}
+
+@keyframes moveTruck {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(50px); }
+  100% { transform: translateX(0); }
+}
+
+/* Keyframes for wheel rotation */
+@keyframes rotateWheels {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.truck {
+  animation: moveTruck 1.5s infinite ease-in-out;
+}
+
+.wheel {
+  animation: rotateWheels 0.5s infinite linear;
+}
+
