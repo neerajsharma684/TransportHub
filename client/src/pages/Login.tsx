@@ -38,7 +38,8 @@ const Login = () => {
         localStorage.setItem('token', response.token);
         setSuccess(true);
         setFailure(false);
-        navigate('/home');
+        navigate('/dashboard');
+        window.location.reload();
       } else {
         setFailure(true);
         setSuccess(false);

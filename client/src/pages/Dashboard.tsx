@@ -1,5 +1,6 @@
 import Loader from '../components/Loader'
-const Home = () => {
+
+const Dashboard = () => {
     return (
         <div>
             
@@ -8,4 +9,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Dashboard;

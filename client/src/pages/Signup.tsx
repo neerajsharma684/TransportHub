@@ -25,12 +25,12 @@ const Login = () => {
             setSuccess(true);
             setTimeout(() => {
                 setSuccess(false);
-            }, 3000);
+            }, 1000);
         } catch (error) {
             setFailure(true);
             setTimeout(() => {
                 setFailure(false);
-            }, 3000);
+            }, 1000);
         }
         setSubmitting(false);
     };
@@ -93,14 +93,11 @@ const Login = () => {
                                     className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
                                     disabled={isSubmitting}
                                 >
-                                    Login
+                                    Signup
                                 </button>
                             </Form>
                         )}
                     </Formik>
-                    <div className="mt-4 text-center">
-                        <Link to={'/forgot-password'} className="text-sm text-blue-400 hover:underline">Forgot password?</Link>
-                    </div>
                 </div>
             </div>
         </>
