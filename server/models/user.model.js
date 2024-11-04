@@ -12,16 +12,10 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     createdBy: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'admins',
         required: true,
         trim: true,
-    },
-    role: {
-        type: String,
-        default: 'user',
-        required: true,
-        trim: true,
-        enum: ['user']
     }
 });
 

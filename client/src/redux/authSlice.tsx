@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   isLoggedIn: boolean;
+  id: string | null;
   name: string | null;
   email: string | null;
   role: string | null;
@@ -9,6 +10,7 @@ interface AuthState {
 
 const initialState: AuthState = {
     isLoggedIn: false,
+    id: null,
     name: null,
     email: null,
     role: null
@@ -23,6 +25,7 @@ const authSlice = createSlice({
         localStorage.setItem('token', token);
         const payload = JSON.parse(atob(token.split('.')[1]));
         state.isLoggedIn = true;
+        state.id = payload.adminId;
         state.email = payload.email;
         state.name = payload.name;
         state.role = payload.role;
@@ -30,6 +33,7 @@ const authSlice = createSlice({
     logout(state) {
         localStorage.removeItem('token');
         state.isLoggedIn = false;
+        state.id = null;
         state.role = null;
         state.email = null;
         state.name = null;  
@@ -39,11 +43,13 @@ const authSlice = createSlice({
         if (token) {
           const payload = JSON.parse(atob(token.split('.')[1]));
           state.isLoggedIn = true;
+          state.id = payload.adminId;
           state.role = payload.role;
           state.email = payload.email;
           state.name = payload.name;
         } else {
           state.isLoggedIn = false;
+          state.id = null;
           state.role = null;
           state.email = null;
           state.name = null;

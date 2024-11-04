@@ -1,17 +1,20 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Loader, successMessage, failureMessage } from '../components/index';
-import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import createUser from '../services/signup.api'
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitting, setSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
     const [failure, setFailure] = useState(false);
+    const createdBy = useSelector((state: RootState) => state.auth.id);
 
     const togglePassword = () => {
         setShowPassword(!showPassword);
@@ -21,16 +24,22 @@ const Login = () => {
         const { email, password } = values;
         setSubmitting(true);
         try {
-            await createUser(email, password);
+            if (createdBy) {
+                await createUser(email, password, createdBy);
+            } else {
+                alert('Admin Id not found');
+                throw new Error('User ID is null');
+            }
             setSuccess(true);
             setTimeout(() => {
                 setSuccess(false);
-            }, 1000);
+                window.location.reload();
+            }, 3000);
         } catch (error) {
             setFailure(true);
             setTimeout(() => {
                 setFailure(false);
-            }, 1000);
+            }, 3000);
         }
         setSubmitting(false);
     };

@@ -3,7 +3,7 @@ const User = require('../models/user.model');
 const { validationResult } = require('express-validator');
 
 const signup = async (req, res) => {
-    let { email, password } = req.body;
+    let { email, password, createdBy } = req.body;
     email = email.toLowerCase();
 
     // Validate and sanitize input
@@ -25,7 +25,8 @@ const signup = async (req, res) => {
         // Create a new user
         user = new User({
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            createdBy
         });
 
         // Save the user to the database
