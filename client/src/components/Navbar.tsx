@@ -78,7 +78,7 @@ const Navbar = () => {
                         <div
                             onClick={() => toggleDropdown('master')}
                             className={`flex items-center p-2 rounded transition duration-200 cursor-pointer ${
-                                isDropdownActive(['/branch', '/rate-list', '/party-info', '/vehicle-info', '/driver-info'])
+                                isDropdownActive(['/branch', '/party-info', '/vehicle-info', '/driver-info'])
                                     ? 'bg-blue-700'
                                     : 'hover:bg-gray-700'
                             }`}
@@ -100,16 +100,6 @@ const Navbar = () => {
                                         }`}
                                     >
                                         <span>Branch</span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to="/rate-list"
-                                        className={`flex items-center p-2 rounded transition duration-200 ${
-                                            isActive('/rate-list') ? 'bg-blue-600' : 'hover:bg-gray-700'
-                                        }`}
-                                    >
-                                        <span>Rate List</span>
                                     </Link>
                                 </li>
                                 <li>

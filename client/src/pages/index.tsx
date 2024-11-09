@@ -7,3 +7,4 @@ export {default as Signup} from './Signup';
 export {default as ForgotPassword} from './ForgotPassword';
 export {default as ManageUsers} from './ManageUsers';
 export {default as ManageAdmins} from './ManageAdmins';
+export {default as Branch } from './branch';

@@ -1,21 +1,6 @@
 const mongoose = require('mongoose');
 
 const branchSchema = new mongoose.Schema({
-    clientID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'admin',
-        required: true
-    },
-    createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        refPath: 'createdByRole',
-        required: true
-    },
-    createdByRole: {
-        type: String,
-        required: true,
-        enum: ['admin', 'user']
-    },
     name: {
         type: String,
         required: true,
@@ -56,10 +41,15 @@ const branchSchema = new mongoose.Schema({
         }
     },
     manager: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'user',
         required: true
     },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'admin',
+        required: true
+    }
 });
 
 const Branch = mongoose.model('Branch', branchSchema);

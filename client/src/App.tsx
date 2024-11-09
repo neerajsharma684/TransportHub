@@ -8,7 +8,8 @@ import {
   Signup,
   ForgotPassword,
   ManageUsers,
-  ManageAdmins
+  ManageAdmins,
+  Branch
 } from './pages/index'
 import { Navbar, PrivateRoute } from './components/index'
 import './App.css'
@@ -49,6 +50,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/manage-users" element={<ManageUsers />} />
           <Route path="/manage-admins" element={<ManageAdmins />} />
+          <Route path="/branch" element={<Branch />} />
         </Route>
         <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
