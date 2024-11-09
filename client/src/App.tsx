@@ -11,7 +11,9 @@ import {
   ManageAdmins,
   Branch,
   AddBranch,
-  NotFound
+  NotFound,
+  AddVehicle,
+  ManageVehicle
 } from './pages/index'
 import { Navbar, PrivateRoute } from './components/index'
 import './App.css'
@@ -40,23 +42,25 @@ function App() {
     <Router>
       <div className="flex">
         {isLoggedIn && <Navbar />}
-        <div className="flex-grow ml-64 p-4">
+        <div className="flex-grow p-6 ml-80">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/admin-login" element={<AdminLogin />} />
-        <Route element={<PrivateRoute requiredRoles={['admin', 'superadmin']} />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin-signup" element={<AdminSignup />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/manage-users" element={<ManageUsers />} />
-          <Route path="/manage-admins" element={<ManageAdmins />} />
-          <Route path="/branch" element={<Branch />} />
-          <Route path="/add-branch" element={<AddBranch />} />
-        </Route>
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="*" element={<NotFound />} />
+            <Route element={<PrivateRoute requiredRoles={['admin', 'superadmin']} />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/admin-signup" element={<AdminSignup />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/manage-users" element={<ManageUsers />} />
+              <Route path="/manage-admins" element={<ManageAdmins />} />
+              <Route path="/branch" element={<Branch />} />
+              <Route path="/add-branch" element={<AddBranch />} />
+            </Route>
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/manage-vehicle" element={<ManageVehicle />} />
+            <Route path="/add-vehicle" element={<AddVehicle />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </div>

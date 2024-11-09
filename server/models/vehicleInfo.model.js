@@ -1,21 +1,6 @@
 const mongoose = require('mongoose');
 
 const vehicleInfoSchema = new mongoose.Schema({
-    clientID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'admin',
-        required: true
-    },
-    createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        refPath: 'createdByRole',
-        required: true
-    },
-    createdByRole: {
-        type: String,
-        required: true,
-        enum: ['admin', 'user']
-    },
     vehicleNumber: {
         type: String,
         required: true,
@@ -76,6 +61,26 @@ const vehicleInfoSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    vehicleOwner: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    vehicleOwnerContact: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        refPath: 'createdByModel',
+        required: true
+    },
+    createdByModel: {
+        type: String,
+        required: true,
+        enum: ['User', 'Admin']
+    }
 });
 
 const VehicleInfo = mongoose.model('VehicleInfo', vehicleInfoSchema);

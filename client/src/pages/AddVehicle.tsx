@@ -36,7 +36,7 @@ const statesAndCities = {
     "West Bengal": ["Kolkata", "Darjeeling"]
 };
 
-const AddBranch = () => {
+const AddVehicle = () => {
     const createdBy = useSelector((state: RootState) => state.auth.id || '');
     const [selectedState, setSelectedState] = useState<keyof typeof statesAndCities | ''>('');
     const [managers, setManagers] = useState([]);
@@ -103,7 +103,7 @@ const AddBranch = () => {
 
     return (
         <div className="bg-gray-900 text-white">
-            <h1 className="text-3xl font-bold mb-6">Add New Branch</h1>
+            <h1 className="text-3xl font-bold mb-6">Add Vehicle</h1>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
@@ -227,7 +227,7 @@ const AddBranch = () => {
                             className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
                             disabled={isSubmitting}
                         >
-                            {isSubmitting ? 'Adding...' : 'Add Branch'}
+                            {isSubmitting ? 'Creating...' : 'Create Branch'}
                         </button>
                     </Form>
                 )}
@@ -236,4 +236,4 @@ const AddBranch = () => {
     );
 };
 
-export default AddBranch;
+export default AddVehicle;

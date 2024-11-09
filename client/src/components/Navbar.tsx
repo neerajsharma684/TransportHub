@@ -54,7 +54,7 @@ const Navbar = () => {
     const isDropdownActive = (paths: string[]) => paths.some(path => location.pathname === path);
 
     return (
-        <div className="fixed top-0 left-0 h-screen bg-gray-900 text-white w-64 flex flex-col shadow-lg">
+        <div className="fixed top-0 left-0 h-full bg-gray-900 text-white w-64 flex flex-col shadow-lg">
             <div className="flex items-center justify-center h-20 border-b border-gray-700">
                 <h1 className="text-2xl font-bold">TransportHub</h1>
             </div>
@@ -78,7 +78,7 @@ const Navbar = () => {
                         <div
                             onClick={() => toggleDropdown('master')}
                             className={`flex items-center p-2 rounded transition duration-200 cursor-pointer ${
-                                isDropdownActive(['/branch', '/party-info', '/vehicle-info', '/driver-info'])
+                                isDropdownActive(['/branch', '/party-info', '/manage-vehicle', '/manage-driver'])
                                     ? 'bg-blue-700'
                                     : 'hover:bg-gray-700'
                             }`}
@@ -114,7 +114,7 @@ const Navbar = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/vehicle-info"
+                                        to="/manage-vehicle"
                                         className={`flex items-center p-2 rounded transition duration-200 ${
                                             isActive('/vehicle-info') ? 'bg-blue-600' : 'hover:bg-gray-700'
                                         }`}
@@ -124,7 +124,7 @@ const Navbar = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/driver-info"
+                                        to="/manage-driver"
                                         className={`flex items-center p-2 rounded transition duration-200 ${
                                             isActive('/driver-info') ? 'bg-blue-600' : 'hover:bg-gray-700'
                                         }`}
