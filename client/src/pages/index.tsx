@@ -5,3 +5,5 @@ export {default as AdminLogin} from './AdminLogin';
 export {default as AdminSignup} from './AdminSignup';
 export {default as Signup} from './Signup';
 export {default as ForgotPassword} from './ForgotPassword';
+export {default as ManageUsers} from './ManageUsers';
+export {default as ManageAdmins} from './ManageAdmins';

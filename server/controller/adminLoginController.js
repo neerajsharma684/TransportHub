@@ -31,7 +31,7 @@ const adminLogin = async (req, res) => {
         }
 
         // Generate JWT
-        const token = jwt.sign({ adminId: admin._id, name: admin.name, email: admin.email, role: admin.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        const token = jwt.sign({ adminId: admin._id, name: admin.name, email: admin.email, role: admin.role, plan: admin.plan }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
         // Store token in an HTTP-only cookie
         res.cookie('token', token, {

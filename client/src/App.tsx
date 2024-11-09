@@ -6,7 +6,9 @@ import {
   AdminLogin,
   AdminSignup,
   Signup,
-  ForgotPassword
+  ForgotPassword,
+  ManageUsers,
+  ManageAdmins
 } from './pages/index'
 import { Navbar, PrivateRoute } from './components/index'
 import './App.css'
@@ -33,18 +35,25 @@ function App() {
   return (
 
     <Router>
-      {isLoggedIn && <Navbar />}
-      <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/about" element={<About />} />
+      <div className="flex">
+        {isLoggedIn && <Navbar />}
+        <div className="flex-grow ml-64 p-4">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
         <Route element={<PrivateRoute requiredRoles={['admin', 'superadmin']} />}>
           <Route path="/login" element={<Login />} />
-          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin-signup" element={<AdminSignup />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/manage-users" element={<ManageUsers />} />
+          <Route path="/manage-admins" element={<ManageAdmins />} />
         </Route>
         <Route path="/forgot-password" element={<ForgotPassword />} />
-      </Routes>
+          </Routes>
+        </div>
+      </div>
     </Router>
 
   )

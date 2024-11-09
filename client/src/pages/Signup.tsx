@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Loader, successMessage, failureMessage } from '../components/index';
@@ -7,9 +7,8 @@ import * as Yup from 'yup';
 import createUser from '../services/signup.api'
 import { RootState } from '../redux/store';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Signup = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmitting, setSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -33,7 +32,6 @@ const Login = () => {
             setSuccess(true);
             setTimeout(() => {
                 setSuccess(false);
-                window.location.reload();
             }, 3000);
         } catch (error) {
             setFailure(true);
@@ -113,4 +111,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;
