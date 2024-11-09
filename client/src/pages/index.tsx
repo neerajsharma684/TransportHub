@@ -8,3 +8,5 @@ export {default as ForgotPassword} from './ForgotPassword';
 export {default as ManageUsers} from './ManageUsers';
 export {default as ManageAdmins} from './ManageAdmins';
 export {default as Branch } from './branch';
+export {default as AddBranch } from './AddBranch';
+export {default as NotFound } from './NotFound';

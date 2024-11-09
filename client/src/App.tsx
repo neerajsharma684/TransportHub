@@ -9,7 +9,9 @@ import {
   ForgotPassword,
   ManageUsers,
   ManageAdmins,
-  Branch
+  Branch,
+  AddBranch,
+  NotFound
 } from './pages/index'
 import { Navbar, PrivateRoute } from './components/index'
 import './App.css'
@@ -51,8 +53,10 @@ function App() {
           <Route path="/manage-users" element={<ManageUsers />} />
           <Route path="/manage-admins" element={<ManageAdmins />} />
           <Route path="/branch" element={<Branch />} />
+          <Route path="/add-branch" element={<AddBranch />} />
         </Route>
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </div>
