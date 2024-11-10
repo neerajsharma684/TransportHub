@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useNavigate } from 'react-router-dom';
@@ -13,10 +13,14 @@ const Branch = () => {
         name: string;
         email: string;
         role: string;
+        address?: string;
+        phone?: string;
+        manager?: string;
     }
 
     const [users, setUsers] = useState<User[]>([]);
     const navigate = useNavigate();
+    const [sortConfig, setSortConfig] = useState<{ key: string; direction: string } | null>(null);
     const createdBy = useSelector((state: RootState) => state.auth.id) || '';
     const plan = 'starter';
 
@@ -41,6 +45,30 @@ const Branch = () => {
         await deleteUser(userEmail);
         setUsers(users.filter(user => user.email !== userEmail));
     }
+    };
+
+    const handleSort = (key: keyof User) => {
+        let direction = 'ascending';
+        if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
+            direction = 'descending';
+        }
+        setSortConfig({ key, direction });
+        sortArray(key, direction);
+    };
+
+    const sortArray = (key: keyof User, direction: string) => {
+        const sortedUsers = [...users].sort((a, b) => {
+            if (a[key] !== undefined && b[key] !== undefined) {
+                if (a[key] < b[key]) {
+                    return direction === 'ascending' ? -1 : 1;
+                }
+                if (a[key] > b[key]) {
+                    return direction === 'ascending' ? 1 : -1;
+                }
+            }
+            return 0;
+        });
+        setUsers(sortedUsers);
     };
 
     const maxBranches = plan === 'starter' ? 10 : 10; // Example: 10 for starter, 10 for other plans
@@ -71,11 +99,21 @@ const Branch = () => {
             <table className="w-full bg-gray-800 rounded-lg shadow-lg">
                 <thead>
                     <tr className="bg-gray-700">
-                        <th className="p-4 text-center">Name</th>
-                        <th className="p-4 text-center">Address</th>
-                        <th className="p-4 text-center">Email</th>
-                        <th className="p-4 text-center">Phone</th>
-                        <th className="p-4 text-center">Manager</th>
+                    <th className="p-4 text-center cursor-pointer" onClick={() => handleSort('name')}>
+                            Name {sortConfig?.key === 'name' && (sortConfig.direction === 'ascending' ? <FontAwesomeIcon icon={faSortUp} className='ml-6'/> : <FontAwesomeIcon icon={faSortDown} className='ml-6'/>)}
+                        </th>
+                        <th className="p-4 text-center cursor-pointer" onClick={() => handleSort('address')}>
+                            Address {sortConfig?.key === 'address' && (sortConfig.direction === 'ascending' ? <FontAwesomeIcon icon={faSortUp} className='ml-6'/> : <FontAwesomeIcon icon={faSortDown} className='ml-6'/>)}
+                        </th>
+                        <th className="p-4 text-center cursor-pointer" onClick={() => handleSort('email')}>
+                            Email {sortConfig?.key === 'email' && (sortConfig.direction === 'ascending' ? <FontAwesomeIcon icon={faSortUp} className='ml-6'/> : <FontAwesomeIcon icon={faSortDown} className='ml-6'/>)}
+                        </th>
+                        <th className="p-4 text-center cursor-pointer" onClick={() => handleSort('phone')}>
+                            Phone {sortConfig?.key === 'phone' && (sortConfig.direction === 'ascending' ? <FontAwesomeIcon icon={faSortUp} className='ml-6'/> : <FontAwesomeIcon icon={faSortDown} className='ml-6'/>)}
+                        </th>
+                        <th className="p-4 text-center cursor-pointer" onClick={() => handleSort('manager')}>
+                            Manager {sortConfig?.key === 'manager' && (sortConfig.direction === 'ascending' ? <FontAwesomeIcon icon={faSortUp} className='ml-6'/> : <FontAwesomeIcon icon={faSortDown} className='ml-6'/>)}
+                        </th>
                         <th className="p-4 text-center">Actions</th>
                     </tr>
                 </thead>
