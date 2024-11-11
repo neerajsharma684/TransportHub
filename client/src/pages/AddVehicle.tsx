@@ -15,10 +15,15 @@ const AddVehicle = () => {
         vehicleCapacity: '',
         vehicleFuelType: '',
         vehicleInsuranceExpiry: new Date(),
+        vehicleInsurancePdf: new File([''], 'insurance.pdf', { type: 'application/pdf' }),
         vehiclePermitExpiry: new Date(),
+        vehiclePermitPdf: new File([''], 'permit.pdf', { type: 'application/pdf' }),
         vehicleFitnessExpiry: new Date(),
+        vehicleFitnessPdf: new File([''], 'fitness.pdf', { type: 'application/pdf' }),
         vehiclePUCExpiry: new Date(),
+        vehiclePUCPdf: new File([''], 'puc.pdf', { type: 'application/pdf' }),
         vehicleRegistration: new Date(),
+        vehicleRegistrationPdf: new File([''], 'registration.pdf', { type: 'application/pdf' }),
         vehicleTDS: false,
         vehicleCurrentStatus: '',
         vehicleOwner: '',
@@ -177,6 +182,7 @@ const AddVehicle = () => {
                             </Field>
                             <ErrorMessage name="vehicleFuelType" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
+                        <div className='grid grid-cols-2 gap-4'>
                         <div>
                             <label className="block text-gray-400 mb-2" htmlFor="vehicleInsuranceExpiry">Insurance Expiry</label>
                             <Field
@@ -187,6 +193,23 @@ const AddVehicle = () => {
                             />
                             <ErrorMessage name="vehicleInsuranceExpiry" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
+                        <div >
+                                <label className="block text-gray-400 mb-2" htmlFor="insurancePDF">Upload Insurance PDF</label>
+                                <input
+                                    type="file"
+                                    name="insurancePDF"
+                                    id="insurancePDF"
+                                    accept="application/pdf"
+                                    onChange={(event) => {
+                                        if (event.currentTarget.files) {
+                                            setFieldValue('insurancePDF', event.currentTarget.files[0]);
+                                        }
+                                    }}
+                                    className="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                                <ErrorMessage name="insurancePDF" component="div" className="text-red-500 text-sm mt-1" />
+                            </div>
+                            </div>
                         <div>
                             <label className="block text-gray-400 mb-2" htmlFor="vehiclePermitExpiry">Permit Expiry</label>
                             <Field
