@@ -48,8 +48,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/login" element={<Login />} />
             <Route element={<PrivateRoute requiredRoles={['admin', 'superadmin']} />}>
-              <Route path="/login" element={<Login />} />
               <Route path="/admin-signup" element={<AdminSignup />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/manage-users" element={<ManageUsers />} />

@@ -176,8 +176,7 @@ const Navbar = () => {
                                         <span>Manage Users</span>
                                     </Link>
                                 </li>
-                                {userRole != 'user' &&(
-                                <>
+                                
                                 <li>
                                     <Link
                                         to="/admin-signup"
@@ -198,8 +197,6 @@ const Navbar = () => {
                                         <span>Manage Admins</span>
                                     </Link>
                                 </li>
-                                </>
-                                )}
                             </ul>
                         )}
                     </li>

@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import fetchUsers from '../services/manageUsers.api';
+import createBranch from '../services/addBranch.api';
 
 const statesAndCities = {
     "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur"],
@@ -81,23 +82,19 @@ const AddBranch = () => {
     });
 
     const handleSubmit = async (values: typeof initialValues) => {
+        const {name, address, contact, manager} = values;
         try {
-            const response = await fetch('/api/branches', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify(values)
-            });
-            if (response.ok) {
-                alert('Branch created successfully');
+            if (createdBy) {
+                await createBranch(name, address.street, address.state, address.city, address.zip, contact.phone, contact.email, manager, createdBy);
             } else {
-                alert('Failed to create branch');
+                alert('Admin Id not found');
+                throw new Error('User ID is null');
             }
+        
         } catch (error) {
-            console.error('Error creating branch:', error);
-            alert('Failed to create branch');
+            console.error('Error creating Branch:', error);
+            throw error;
+            
         }
     };
 

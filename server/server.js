@@ -8,8 +8,11 @@ const loginRoute = require('./routes/login.route');
 const adminLoginRoute = require('./routes/adminLogin.route');
 const signupRoute = require('./routes/signup.route');
 const adminSignupRoute = require('./routes/adminsignup.route');
+const addBranchRoute = require('./routes/addBranch.route')
 const fetchUserRoute = require('./routes/fetchUser.route');
+const fetchBranchRoute = require('./routes/fetchBranch.route')
 const deleteUserRoute = require('./routes/deleteUser.route');
+const deleteBranchRoute = require('./routes/deleteBranch.route')
 
 dotenv.config();
 
@@ -30,8 +33,11 @@ app.use('/api/login', loginRoute);
 app.use('/api/adminLogin', adminLoginRoute);
 app.use('/api/adminSignup', adminSignupRoute);
 app.use('/api/signup', signupRoute);
+app.use('/api/addBranch', addBranchRoute);
 app.use('/api/fetchUser', fetchUserRoute);
+app.use('/api/fetchBranch', fetchBranchRoute);
 app.use('/api/deleteUser', deleteUserRoute);
+app.use('/api/deleteBranch', deleteBranchRoute);
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('MongoDB Connected'))

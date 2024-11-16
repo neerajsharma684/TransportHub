@@ -210,6 +210,7 @@ const AddVehicle = () => {
                                 <ErrorMessage name="insurancePDF" component="div" className="text-red-500 text-sm mt-1" />
                             </div>
                             </div>
+                            <div className='grid grid-cols-2 gap-4'>
                         <div>
                             <label className="block text-gray-400 mb-2" htmlFor="vehiclePermitExpiry">Permit Expiry</label>
                             <Field
@@ -219,6 +220,23 @@ const AddVehicle = () => {
                                 className="w-full p-2 rounded bg-gray-700 text-white text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                             <ErrorMessage name="vehiclePermitExpiry" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+                        <div >
+                                <label className="block text-gray-400 mb-2" htmlFor="insurancePDF">Upload Permit PDF</label>
+                                <input
+                                    type="file"
+                                    name="permitPDF"
+                                    id="permitPDF"
+                                    accept="application/pdf"
+                                    onChange={(event) => {
+                                        if (event.currentTarget.files) {
+                                            setFieldValue('permitPDF', event.currentTarget.files[0]);
+                                        }
+                                    }}
+                                    className="w-full p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                                <ErrorMessage name="permitPDF" component="div" className="text-red-500 text-sm mt-1" />
+                            </div>
                         </div>
                         <div>
                             <label className="block text-gray-400 mb-2" htmlFor="vehicleFitnessExpiry">Fitness Expiry</label>
